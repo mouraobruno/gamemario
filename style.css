@@ -1,0 +1,157 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+#container {
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(47, 46, 49, 0.281);
+}
+
+#start-screen {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+#nome {
+  font: 1em sans-serif;
+  /* Para dar o mesmo tamanho a todos os campo de texto */
+  width: 300px;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  /* Para harmonizar o look & feel das bordas nos campos de texto*/
+  border: 1px solid #999;
+}
+
+#label {
+}
+
+.image {
+  width: 40vw;
+  height: 40vh;
+}
+
+#game-screen {
+  width: 100%;
+  height: 100%;
+  border: 1px solid red;
+  position: relative;
+  overflow: hidden;
+}
+
+#game-over {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  font-weight: bold;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Courier New", "courier";
+  font-size: 60px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+#game-board {
+  width: 100%;
+  height: 500px;
+  border-bottom: 10px solid green;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(#87cee8, #e0f6ff);
+}
+
+.pipe {
+  position: absolute; /* position absolute e utilizado para as imagens nao interfirir uma na outra */
+  bottom: 0;
+  width: 50px;
+  animation: pipe-animation 2s infinite linear;
+  /* infinite e usado para a imagem ficar passando nada tela */
+  /* linear e para ir na mesma velocidade */
+}
+
+.mario {
+  width: 110px;
+  position: absolute;
+  bottom: 0;
+}
+
+.jump {
+  animation: jump 500ms ease-out;
+}
+
+.cloud {
+  position: absolute;
+  width: 550px;
+  animation: cloud-animation 25s infinite linear;
+}
+
+.startgame {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  background-color: black;
+}
+
+.moeda {
+  position: absolute;
+  bottom: 100;
+  width: 20px;
+}
+
+@keyframes pipe-animation {
+  from {
+    right: -50px;
+    /* colocar o tamanho da imagem por isso o valor negativo */
+  }
+  to {
+    right: 100%;
+  }
+}
+
+@keyframes jump {
+  0% {
+    bottom: 0;
+  }
+  40% {
+    bottom: 120px;
+  }
+  50% {
+    bottom: 120px;
+  }
+  60% {
+    bottom: 120px;
+  }
+  100% {
+    bottom: 0;
+  }
+}
+
+@keyframes cloud-animation {
+  from {
+    right: -550px;
+  }
+  to {
+    right: 100%;
+  }
+}

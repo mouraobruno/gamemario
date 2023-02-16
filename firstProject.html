@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>First Project - Mario Game</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="index.js" defer></script>
+    <script src="controls.js" defer></script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="start-screen">
+        <img src="./Imagens/super mario.png" class="image" />
+        <button>Start!</button>
+            <form action="">
+                
+                <label for="nome">Nome:</label id="label">
+                <input type="text" id="nome" />
+            </form>
+      </div>
+      <div id="game-screen" class="hidden">
+        <span id="score">0</span>
+        <div id="game-over" class="hidden">
+          <p>Game Over</p>
+          <p>Your score is: <span>0</span>!</p>
+        </div>
+        <div id="game-board">
+          <img src="./Imagens/cloud.png" class="cloud" />
+          <img src="./Imagens/mario.gif" class="mario" />
+          <img src="./Imagens/pipe.png" class="pipe" />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
