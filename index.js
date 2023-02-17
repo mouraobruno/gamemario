@@ -52,28 +52,26 @@ class Game {
 }
 
 class Player {
-    
   constructor() {
-    this.width = 100;
-    this.height = 100;
-    this.x = 100;
-    this.y = 100;
+    this.width = 120;
+    this.height = 120;
+    this.x = 0;
+    this.y = 390;
     this.speed = 50;
-    this.color = "blue";
     this.element = null;
     this.createElement();
     this.show();
-    this.
   }
+
   createElement() {
-    const div = document.createElement("div");
+    const div = document.createElement("img");
     div.setAttribute("id", "player");
     div.style.width = `${this.width}px`;
     div.style.height = `${this.height}px`;
     div.style.position = "absolute";
     div.style.top = `${this.y}px`;
     div.style.left = `${this.x}px`;
-    div.style.backgroundColor = this.color;
+    div.src = "./Imagens/mario.gif";
     this.element = div;
   }
   show() {
@@ -89,16 +87,7 @@ class Player {
     this.x += this.speed;
     this.element.style.left = `${this.x}px`;
   }
-  moveUp() {
-    if (this.y <= 0) return;
-    this.y -= this.speed;
-    this.element.style.top = `${this.y}px`;
-  }
-  moveDown() {
-    if (this.y + this.height >= gameScreen.offsetHeight) return;
-    this.y += this.speed;
-    this.element.style.top = `${this.y}px`;
-  }
+
   crashesWith(obstacle) {
     // limites do player
     const top = this.y;
@@ -117,42 +106,41 @@ class Player {
   }
 }
 
-// class Obstacle {
-//   constructor(y) {
-//     this.x = gameScreen.offsetWidth - 100;
-//     this.y = y;
-//     this.speed = 6;
-//     this.width = 50;
-//     this.height = 50;
-//     this.color = "#ff0000";
-//     this.element = null;
-//     this.createElement();
-//     this.show();
-//   }
-//   createElement() {
-//     const div = document.createElement("div");
-//     div.classList.add("obstacle");
-//     div.style.width = `${this.width}px`;
-//     div.style.height = `${this.height}px`;
-//     div.style.position = "absolute";
-//     div.style.top = `${this.y}px`;
-//     div.style.left = `${this.x}px`;
-//     div.style.backgroundColor = this.color;
-//     div.style.borderRadius = "50%";
-//     this.element = div;
-//   }
-//   show() {
-//     gameScreen.appendChild(this.element);
-//   }
-//   hide() {
-//     gameScreen.removeChild(this.element);
-//   }
-//   moveLeft() {
-//     if (this.x <= 0) return;
-//     this.x -= this.speed;
-//     this.element.style.left = `${this.x}px`;
-//   }
-// }
+class Obstacle {
+  constructor(y) {
+    this.x = gameScreen.offsetWidth - 100;
+    this.y = y;
+    this.speed = 6;
+    this.width = 70;
+    this.height = 70;
+    this.element = null;
+    this.createElement();
+    this.show();
+  }
+  createElement() {
+    const div = document.createElement("img");
+    div.classList.add("obstacle");
+    div.style.width = `${this.width}px`;
+    div.style.height = `${this.height}px`;
+    div.style.position = "absolute";
+    div.style.top = `${this.y}px`;
+    div.style.left = `${this.x}px`;
+    div.src = "./Imagens/pipe.png";
+
+    this.element = div;
+  }
+  show() {
+    gameScreen.appendChild(this.element);
+  }
+  hide() {
+    gameScreen.removeChild(this.element);
+  }
+  moveLeft() {
+    if (this.x <= 0) return;
+    this.x -= this.speed;
+    this.element.style.left = `${this.x}px`;
+  }
+}
 
 const mario = document.querySelector(".mario");
 //criar o elemento com a imagem do mario e trazer do css a classe
