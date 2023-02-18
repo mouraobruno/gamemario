@@ -109,10 +109,10 @@ class Player {
 class Obstacle {
   constructor(y) {
     this.x = gameScreen.offsetWidth - 100;
-    this.y = y;
+    this.y = 448;
     this.speed = 6;
-    this.width = 70;
-    this.height = 70;
+    this.width = 60;
+    this.height = 60;
     this.element = null;
     this.createElement();
     this.show();
