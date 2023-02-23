@@ -56,16 +56,20 @@ class Player {
     this.width = 120;
     this.height = 120;
     this.x = 0;
-    this.y = 390;
+    this.y = 490;
     this.speed = 50;
     this.element = null;
     this.createElement();
     this.show();
+    this.jump = -70;
+    this.speedy = 0;
+    this.airjump = false;
   }
 
   createElement() {
     const div = document.createElement("img");
     div.setAttribute("id", "player");
+    div.setAttribute("class", "mario");
     div.style.width = `${this.width}px`;
     div.style.height = `${this.height}px`;
     div.style.position = "absolute";
@@ -86,6 +90,15 @@ class Player {
     if (this.x + this.width >= gameScreen.offsetWidth) return;
     this.x += this.speed;
     this.element.style.left = `${this.x}px`;
+  }
+  moveJump() {
+    this.y -= 75;
+    this.element.style.top = `${this.y}px`;
+
+    setTimeout(() => {
+      this.y += 75;
+      this.element.style.top = `${this.y}px`;
+    }, 800);
   }
 
   crashesWith(obstacle) {
@@ -109,8 +122,8 @@ class Player {
 class Obstacle {
   constructor(y) {
     this.x = gameScreen.offsetWidth - 100;
-    this.y = 448;
-    this.speed = 6;
+    this.y = 545;
+    this.speed = 5;
     this.width = 60;
     this.height = 60;
     this.element = null;
@@ -141,39 +154,3 @@ class Obstacle {
     this.element.style.left = `${this.x}px`;
   }
 }
-
-const mario = document.querySelector(".mario");
-//criar o elemento com a imagem do mario e trazer do css a classe
-
-const pipe = document.querySelector(".pipe");
-
-const jump = () => {
-  mario.classList.add("jump");
-  setTimeout(() => {
-    mario.classList.remove("jump");
-  }, 500);
-}; // nessa funcao usar o settimeout para remover e adicionar o evento do pulo
-
-const loop = setInterval(() => {
-  const pipePosition = pipe.offsetLeft;
-  const marioPosition = +window
-    .getComputedStyle(mario)
-    .bottom.replace("px", "");
-  //foi preciso adicionar o getcomputestyle para pegar a posicao do mario
-  //adicionei o sinal de + para converter a string em numero
-  if (pipePosition <= 100 && pipePosition > 0 && marioPosition < 70) {
-    pipe.style.animation = "none";
-    pipe.style.left = `${pipePosition}px`;
-
-    mario.style.animation = "none";
-    mario.style.bottom = `${marioPosition}px`;
-
-    mario.src = "./imagens/mariogameover.jpg";
-    mario.style.width = "80px";
-    mario.style.marginLeft = "20px";
-
-    clearInterval(loop);
-  }
-}, 10);
-
-document.addEventListener("keydown", jump); //keydown e usado para ativar o movimento atraves de qualquer tecla do teclado
